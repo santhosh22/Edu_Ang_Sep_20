@@ -1,0 +1,42 @@
+<br/>
+<div class="panel panel-primary">
+<div class="panel panel-heading">
+    Login Form
+</div>
+
+<div class="panel-body">
+    <form #form="ngForm"
+         (submit)="SubmitForm(form)"> 
+
+        <div class="form-group" [class.has-error]="email.invalid && email.touched">
+            <label for ="lemail" class="control-label">Email</label>
+            <input type="text" class="form-control"
+            name="emai12l"
+            [(ngModel)]="mydata.email"
+            pattern="^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,5})$"
+            required
+            #email="ngModel"
+            id="lemail"/>
+            <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                Please enter the correct email
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="password.invalid && password.touched">
+            <label for ="lpassword" class="control-label">Password</label>
+            <input type="password" class="form-control"
+            name="password12"
+            [(ngModel)]="mydata.password"
+            minlength="5"
+            required
+            #password="ngModel"
+            id="lpassword"/>
+            <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                Please enter minimum 5 charactor
+            </div>
+        </div>
+         <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>
+</div>

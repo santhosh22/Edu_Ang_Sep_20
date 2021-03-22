@@ -1,0 +1,220 @@
+<br/>
+<div class="panel panel-primary center" style="width: 50%;">
+    <div class="panel-heading">
+        Submit the application
+    </div>
+    <div class="panel-body">
+        <form #form="ngForm" (submit)="submitForm(form)">
+            <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+                <label for="fname" 
+                class="control-label">Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="firstname"
+                       (ngModelChange)="firstToUpper($event)"
+                       [ngModel]="myUser.firstname"
+                       id="fname"
+                       required
+                       #firstName="ngModel"/>
+                <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched">
+                    FirstName is required
+                </div>
+            </div>
+            <!-- <div>
+                <h4>Classess</h4>
+                <h3>{{firstName.invalid}}</h3>
+                <h3>{{firstName.className}}</h3>
+            </div>
+            <div class="form-group">
+                <label for="lname">LastName</label>
+                <input type="text"
+                        class="form-control"
+                        name="lastname"
+                        (ngModelChange)="firstToUpper($event)"
+                        [(ngModel)]="myUser.lastname"
+                        id="lname"/>
+            </div> -->
+            <div class="form-group" [class.has-error]="email.invalid && email.touched">
+                    <label for="mail"
+                    class="control-label">Email</label>
+                    <input type="text"
+                            class="form-control"
+                            name="email"
+                            [(ngModel)]="myUser.email"
+                            pattern="^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,5})$"
+                            id="mail"
+                            #email="ngModel"/>
+                    <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                        Please enter valid email
+                    </div>
+            </div>
+
+            <div class="form-group" [class.has-error]="companyName.invalid && companyName.touched">
+                <label for="companyName" 
+                class="control-label">Company Name</label>
+                <input type="text"
+                       class="form-control"
+                       name="companyName"
+                       style="text-transform:uppercase"
+                       [ngModel]="myUser.companyName"
+                       id="companyName"
+                       required
+                       #companyName="ngModel"/>
+                <div class="alert alert-danger" *ngIf="companyName.invalid && companyName.touched">
+                    Company Name is required
+                </div>
+            </div>
+
+            <div class="form-group" [class.has-error]="hasCodelangError">
+                <label for="clang" class="control-label">Company Type</label>
+                <select
+                    class="form-control"
+                    name="companyType"
+                    [(ngModel)]="myUser.companyType"                
+                    id="clang">
+                    <!-- <option value="default">Please select lang</option> -->
+                    <option *ngFor="let companyType of companyTypes">
+                        {{companyType}}
+                    </option>
+                    
+                </select>
+                <div class="alert alert-danger" *ngIf="hasCodelangError">
+                   Please select valid option
+                </div>
+            </div>
+
+            <div class="form-group" [class.has-error]="proposalTitle.invalid && proposalTitle.touched">
+                <label for="proposalTitle" 
+                class="control-label">Proposal Title</label>
+                <input type="text"
+                       class="form-control"
+                       name="proposalTitle"                      
+                       [ngModel]="myUser.proposalTitle"
+                       id="proposalTitle"
+                       required
+                       #proposalTitle="ngModel"/>
+                <div class="alert alert-danger" *ngIf="proposalTitle.invalid && proposalTitle.touched">
+                    Proposal Title is required
+                </div>
+            </div>
+
+        <div class="radio-group">
+            <label for="businessUnit" 
+            class="control-label">Business Unit (choose one option) *</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="businessUnit"
+                    value="DR" [(ngModel)]="myUser.businessUnit"/>Demand Response
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="businessUnit"
+                    value="REBATE" [(ngModel)]="myUser.businessUnit"/>Rebate
+                </label>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="businessUnit"
+                    value="SCH" [(ngModel)]="myUser.businessUnit"/>Scheduling
+                </label>
+            </div>
+        </div>
+         
+
+        <div class="form-group" [class.has-error]="Overview.invalid && Overview.touched">
+                <label for="Overview" 
+                class="control-label">Proposal details / Overview</label>
+                <input type="text"
+                       class="form-control"
+                       name="Overview"                       
+                       [ngModel]="myUser.Overview"
+                       id="Overview"
+                       required
+                       #Overview="ngModel"/>
+                <div class="alert alert-danger" *ngIf="Overview.invalid && Overview.touched">
+                    Proposal details / Overview is required
+                </div>
+            </div>
+
+            <div class="form-group" [class.has-error]="businessProblemSolved.invalid && businessProblemSolved.touched">
+                <label for="businessProblemSolved" 
+                class="control-label"> Consumer / Business problem</label>
+                <input type="textarea"
+                       class="form-control"  
+                       name="businessProblemSolved"                       
+                       [ngModel]="myUser.businessProblemSolved"
+                       id="businessProblemSolved"
+                       required
+                       #businessProblemSolved="ngModel"/>
+                <div class="alert alert-danger" *ngIf="businessProblemSolved.invalid && businessProblemSolved.touched">
+                    Consumer / Business problem solved is required
+                </div>
+            </div>
+
+            <div class="radio-group">
+                <label for="stageOfDevelopment" 
+                class="control-label">Stage of development *</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="stageOfDevelopment"
+                        value="Idea" [(ngModel)]="myUser.stageOfDevelopment"/>Idea / Concept
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="stageOfDevelopment"
+                        value="Prototype" [(ngModel)]="myUser.stageOfDevelopment"/>Prototype
+                    </label>
+                </div>
+    
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="stageOfDevelopment"
+                        value="Technology" [(ngModel)]="myUser.stageOfDevelopment"/>Commercialized technology
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="stageOfDevelopment"
+                        value="Product" [(ngModel)]="myUser.stageOfDevelopment"/>Commercialized product
+                    </label>
+                </div>
+            </div>
+
+            <div class="radio-group">
+                <label for="intellectualProperty" 
+                class="control-label">Do you own any intellectual property related to your proposal *</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="intellectualProperty"
+                        value="Yes" [(ngModel)]="myUser.intellectualProperty"/>Yes
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="intellectualProperty"
+                        value="No" [(ngModel)]="myUser.intellectualProperty"/>No
+                    </label>
+                </div>                 
+            </div>
+
+            <a href="https://www.sce.com/tnc" target="_blank">Click here to view the Terms and Conditions, please read them carefully before agreeing and submitting your proposal</a>
+           
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="termsAndCondition"
+                        value="termsAndCondition" [(ngModel)]="myUser.termsAndCondition"/>
+                        I confirm I have read, understood and accept the terms upon which my proposal is made *
+                </label>
+            </div>
+          <br/>
+            <button type="submit" class="btn btn-success" style="width: 100px; margin: 0 auto;"
+                [disabled]="hasError">
+                Submit
+            </button>
+        </form>
+
+    </div>
+</div>

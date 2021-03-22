@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "innovation"
+    }
+  },
+  "defaultProject": "innovation",
+  "cli": {
+    "analytics": false
+  }
 }
